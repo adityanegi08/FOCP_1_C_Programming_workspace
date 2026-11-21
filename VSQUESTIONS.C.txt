@@ -1,0 +1,676 @@
+#include <stdio.h>
+
+int main()
+{
+    //Q1- Find the Maximum of Three Integers
+    int a, b, c;
+
+    printf("Enter three integers: ");
+    scanf("%d %d %d", &a, &b, &c);
+
+    if (a >= b && a >= c)
+    {
+        printf("Maximum = %d", a);
+    }
+    else if (b >= a && b >= c)
+    {
+        printf("Maximum = %d", b);
+    }
+    else
+    {
+        printf("Maximum = %d", c);
+    }
+
+    return 0;
+}
+
+//Q2. Count multiples in a range
+
+#include <stdio.h>
+
+int main()
+{
+    int start, end, n, count = 0;
+
+    printf("Enter the starting number: ");
+    scanf("%d", &start);
+
+    printf("Enter the ending number: ");
+    scanf("%d", &end);
+
+    printf("Enter the number: ");
+    scanf("%d", &n);
+
+    for (int i = start; i <= end; i++)
+    {
+        if (i % n == 0)
+        {
+            count++;
+        }
+    }
+
+    printf("Count = %d", count);
+
+    return 0;
+}
+//Q3. Rectangle area function
+
+
+
+#include <stdio.h>
+
+int area(int length, int breadth)
+{
+    return length * breadth;
+}
+
+int main()
+{
+    int l, b, result;
+
+    printf("Enter length: ");
+    scanf("%d", &l);
+
+    printf("Enter breadth: ");
+    scanf("%d", &b);
+
+    result = area(l, b);
+
+    printf("Area of rectangle = %d", result);
+
+    return 0;
+}
+
+//Q4. Perfect square without sqrt
+
+#include <stdio.h>
+
+int main()
+{
+    int n, i, flag = 0;
+
+    printf("Enter a number: ");
+    scanf("%d", &n);
+
+    for (i = 1; i * i <= n; i++)
+    {
+        if (i * i == n)
+        {
+            flag = 1;
+            break;
+        }
+    }
+
+    if (flag == 1)
+        printf("Perfect Square");
+    else
+        printf("Not a Perfect Square");
+
+    return 0;
+}
+
+//Q5.  GCD using Euclid's algorithm
+
+#include <stdio.h>
+
+int main()
+{
+    int a, b, temp;
+
+    printf("Enter two numbers: ");
+    scanf("%d %d", &a, &b);
+
+    while (b != 0)
+    {
+        temp = b;
+        b = a % b;
+        a = temp;
+    }
+
+    printf("GCD = %d", a);
+
+    return 0;
+}
+
+//Q6.  Convert seconds
+
+#include <stdio.h>
+
+int main()
+{
+    int seconds, hours, minutes, remaining;
+
+    printf("Enter time in seconds: ");
+    scanf("%d", &seconds);
+
+    hours = seconds / 3600;
+    remaining = seconds % 3600;
+
+    minutes = remaining / 60;
+    remaining = remaining % 60;
+
+    printf("Hours = %d\n", hours);
+    printf("Minutes = %d\n", minutes);
+    printf("Seconds = %d\n", remaining);
+
+    return 0;
+}
+
+
+//Q7. Evaluate a piecewise function
+
+
+#include <stdio.h>
+
+int main()
+{
+    int x, y;
+
+    printf("Enter the value of x: ");
+    scanf("%d", &x);
+
+    if (x < 0)
+    {
+        y = x * x + 2;
+    }
+    else
+    {
+        y = 2 * x + 3;
+    }
+
+    printf("Value of y = %d", y);
+
+    return 0;
+}
+ // NESTED LOOPS
+ //Q1. Count pairs with a target sum
+
+
+#include <stdio.h>
+
+int main()
+{
+    int n, target, count = 0;
+
+    printf("Enter number of elements: ");
+    scanf("%d", &n);
+
+    int a[n];
+
+    printf("Enter array elements: ");
+    for (int i = 0; i < n; i++)
+    {
+        scanf("%d", &a[i]);
+    }
+
+    printf("Enter target sum: ");
+    scanf("%d", &target);
+
+    for (int i = 0; i < n; i++)
+    {
+        for (int j = i + 1; j < n; j++)
+        {
+            if (a[i] + a[j] == target)
+            {
+                count++;
+            }
+        }
+    }
+
+    printf("Number of pairs = %d", count);
+
+    return 0;
+}
+// Q2. Count relatively prime values
+
+#include <stdio.h>
+
+int gcd(int a, int b)
+{
+    while (b != 0)
+    {
+        int temp = b;
+        b = a % b;
+        a = temp;
+    }
+    return a;
+}
+
+int main()
+{
+    int n, x, count = 0;
+
+    printf("Enter number of elements: ");
+    scanf("%d", &n);
+
+    int a[n];
+
+    printf("Enter array elements: ");
+    for (int i = 0; i < n; i++)
+    {
+        scanf("%d", &a[i]);
+    }
+
+    printf("Enter a number: ");
+    scanf("%d", &x);
+
+    for (int i = 0; i < n; i++)
+    {
+        if (gcd(a[i], x) == 1)
+        {
+            count++;
+        }
+    }
+
+    printf("Count = %d", count);
+
+    return 0;
+}
+
+//Q3.Pythagorean Triples up to N
+
+
+#include <stdio.h>
+
+int main()
+{
+    int n, a, b, c;
+
+    printf("Enter N: ");
+    scanf("%d", &n);
+
+    for (a = 1; a <= n; a++)
+    {
+        for (b = a; b <= n; b++)
+        {
+            for (c = b; c <= n; c++)
+            {
+                if (a*a + b*b == c*c)
+                {
+                    printf("%d %d %d\n", a, b, c);
+                }
+            }
+        }
+    }
+
+    return 0;
+}
+//Q4. Pairs with Equal Digit Sums
+
+#include <stdio.h>
+
+int digitSum(int n)
+{
+    int sum = 0;
+
+    if (n < 0)
+        n = -n;
+
+    while (n > 0)
+    {
+        sum += n % 10;
+        n = n / 10;
+    }
+
+    return sum;
+}
+
+int main()
+{
+    int n, i, j;
+
+    printf("Enter number of elements: ");
+    scanf("%d", &n);
+
+    int a[n];
+
+    printf("Enter elements: ");
+    for (i = 0; i < n; i++)
+        scanf("%d", &a[i]);
+
+    for (i = 0; i < n; i++)
+    {
+        for (j = i + 1; j < n; j++)
+        {
+            if (digitSum(a[i]) == digitSum(a[j]))
+            {
+                printf("(%d, %d)\n", a[i], a[j]);
+            }
+        }
+    }
+
+    return 0;
+}
+// Q5. Closest Pair Difference
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int main()
+{
+    int n, i, j, min, x, y;
+
+    printf("Enter number of elements: ");
+    scanf("%d", &n);
+
+    int a[n];
+
+    printf("Enter elements: ");
+    for (i = 0; i < n; i++)
+        scanf("%d", &a[i]);
+
+    min = abs(a[0] - a[1]);
+    x = a[0];
+    y = a[1];
+
+    for (i = 0; i < n; i++)
+    {
+        for (j = i + 1; j < n; j++)
+        {
+            if (abs(a[i] - a[j]) < min)
+            {
+                min = abs(a[i] - a[j]);
+                x = a[i];
+                y = a[j];
+            }
+        }
+    }
+
+    printf("Closest pair: %d %d\n", x, y);
+    printf("Minimum difference = %d", min);
+
+    return 0;
+}
+// 1D Arrays
+// Q1 — Longest Increasing Contiguous Run
+
+#include <stdio.h>
+
+int main()
+{
+    int n, i;
+    int count = 1, max = 1;
+
+    printf("Enter number of elements: ");
+    scanf("%d", &n);
+
+    int a[n];
+
+    printf("Enter elements: ");
+    for (i = 0; i < n; i++)
+        scanf("%d", &a[i]);
+
+    for (i = 1; i < n; i++)
+    {
+        if (a[i] > a[i - 1])
+        {
+            count++;
+        }
+        else
+        {
+            count = 1;
+        }
+
+        if (count > max)
+            max = count;
+    }
+
+    printf("Longest increasing run = %d", max);
+
+    return 0;
+}
+// Strings and Character Arrays
+// Q1. Count Vowels, Consonants, Digits and Spaces
+
+#include <stdio.h>
+
+int main()
+{
+    char str[100];
+    int i, v = 0, c = 0, d = 0, s = 0;
+
+    printf("Enter a string: ");
+    fgets(str, sizeof(str), stdin);
+
+    for (i = 0; str[i] != '\0'; i++)
+    {
+        if (str[i] >= '0' && str[i] <= '9')
+            d++;
+        else if (str[i] == ' ')
+            s++;
+        else if ((str[i] >= 'a' && str[i] <= 'z') ||
+                 (str[i] >= 'A' && str[i] <= 'Z'))
+        {
+            if (str[i] == 'a' || str[i] == 'e' ||
+                str[i] == 'i' || str[i] == 'o' ||
+                str[i] == 'u' || str[i] == 'A' ||
+                str[i] == 'E' || str[i] == 'I' ||
+                str[i] == 'O' || str[i] == 'U')
+                v++;
+            else
+                c++;
+        }
+    }
+
+    printf("Vowels = %d\n", v);
+    printf("Consonants = %d\n", c);
+    printf("Digits = %d\n", d);
+    printf("Spaces = %d\n", s);
+
+    return 0;
+}
+
+//Q2. Run-Length Encode
+
+#include <stdio.h>
+
+int main()
+{
+    char str[100];
+    int i, count;
+
+    printf("Enter a string: ");
+    scanf("%99s", str);
+
+    for (i = 0; str[i] != '\0'; i++)
+    {
+        count = 1;
+
+        while (str[i] == str[i + 1])
+        {
+            count++;
+            i++;
+        }
+
+        printf("%c%d", str[i], count);
+    }
+
+    return 0;
+}
+
+// 2D ARRAYS
+//Q1. Row and Column Sums
+
+#include <stdio.h>
+
+int main()
+{
+    int a[10][10], r, c, i, j, sum;
+
+    printf("Enter rows and columns: ");
+    scanf("%d %d", &r, &c);
+
+    printf("Enter matrix elements:\n");
+
+    for (i = 0; i < r; i++)
+    {
+        for (j = 0; j < c; j++)
+        {
+            scanf("%d", &a[i][j]);
+        }
+    }
+
+    for (i = 0; i < r; i++)
+    {
+        sum = 0;
+        for (j = 0; j < c; j++)
+            sum += a[i][j];
+
+        printf("Row %d sum = %d\n", i + 1, sum);
+    }
+
+    for (j = 0; j < c; j++)
+    {
+        sum = 0;
+        for (i = 0; i < r; i++)
+            sum += a[i][j];
+
+        printf("Column %d sum = %d\n", j + 1, sum);
+    }
+
+    return 0;
+}
+ 
+// Q2.  Check Matrix Symmetry
+
+#include <stdio.h>
+
+int main()
+{
+    int a[10][10], n, i, j, flag = 1;
+
+    printf("Enter order of matrix: ");
+    scanf("%d", &n);
+
+    printf("Enter matrix elements:\n");
+
+    for (i = 0; i < n; i++)
+    {
+        for (j = 0; j < n; j++)
+        {
+            scanf("%d", &a[i][j]);
+        }
+    }
+
+    for (i = 0; i < n; i++)
+    {
+        for (j = 0; j < n; j++)
+        {
+            if (a[i][j] != a[j][i])
+            {
+                flag = 0;
+                break;
+            }
+        }
+    }
+
+    if (flag == 1)
+        printf("Symmetric Matrix");
+    else
+        printf("Not a Symmetric Matrix");
+
+    return 0;
+}
+// Q3 — Find a Saddle Point
+
+#include <stdio.h>
+
+int main()
+{
+    int a[10][10], r, c, i, j;
+    int k, min, flag = 0;
+
+    printf("Enter rows and columns: ");
+    scanf("%d %d", &r, &c);
+
+    printf("Enter matrix elements:\n");
+
+    for (i = 0; i < r; i++)
+    {
+        for (j = 0; j < c; j++)
+            scanf("%d", &a[i][j]);
+    }
+
+    for (i = 0; i < r; i++)
+    {
+        min = a[i][0];
+        k = 0;
+
+        for (j = 1; j < c; j++)
+        {
+            if (a[i][j] < min)
+            {
+                min = a[i][j];
+                k = j;
+            }
+        }
+
+        for (j = 0; j < r; j++)
+        {
+            if (a[j][k] > min)
+                break;
+        }
+
+        if (j == r)
+        {
+            printf("Saddle point = %d", min);
+            flag = 1;
+        }
+    }
+
+    if (flag == 0)
+        printf("No saddle point found");
+
+    return 0;
+}
+
+//Q4. Count Local Peaks
+
+#include <stdio.h>
+
+int main()
+{
+    int a[10][10], r, c;
+    int i, j, x, y, count = 0;
+    int flag;
+
+    printf("Enter rows and columns: ");
+    scanf("%d %d", &r, &c);
+
+    printf("Enter matrix elements:\n");
+
+    for (i = 0; i < r; i++)
+    {
+        for (j = 0; j < c; j++)
+            scanf("%d", &a[i][j]);
+    }
+
+    for (i = 0; i < r; i++)
+    {
+        for (j = 0; j < c; j++)
+        {
+            flag = 1;
+
+            for (x = i - 1; x <= i + 1; x++)
+            {
+                for (y = j - 1; y <= j + 1; y++)
+                {
+                    if (x >= 0 && x < r &&
+                        y >= 0 && y < c &&
+                        (x != i || y != j))
+                    {
+                        if (a[i][j] <= a[x][y])
+                            flag = 0;
+                    }
+                }
+            }
+
+            if (flag == 1)
+                count++;
+        }
+    }
+
+    printf("Number of local peaks = %d", count);
+
+    return 0;
+}
